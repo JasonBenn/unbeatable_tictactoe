@@ -5,8 +5,11 @@ class TicTacToe
 	end
 
 	def winner?
-		board.each_line.map(&:chomp).include?('XXX')
+		['X', 'O'].each do |player|
+			return player if board.each_line.map(&:chomp).include?(player*3)
+		end
 	end
 end
 
 puts board = TicTacToe.new("XXXOO----").winner?
+puts board = TicTacToe.new("XX-OOO---").winner?
