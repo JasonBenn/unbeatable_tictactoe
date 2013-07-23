@@ -8,8 +8,8 @@ class TicTacToe
 
 	def winner?
 		['X', 'O'].each do |player|
-			[row, column].each do |lane|
-				return player if lane.include?(player*3)
+			[row, column, diagonal].each do |route|
+				return player if route.include?(player*3)
 			end
 		end
 	end
@@ -21,6 +21,12 @@ class TicTacToe
 	def column
 		3.times.map do |n|
 			board.each_line.map { |row| row[n] }.join
+		end
+	end
+
+	def diagonal
+		[[0, 5, 10], [2, 5, 8]].map do |diagonal|
+			diagonal.map { |index| board[index] }.join
 		end
 	end
 end
@@ -39,8 +45,11 @@ end
 # TESTS
 
 test(
-	TicTacToe.new("XXXOO----").winner? == 'X',
-	TicTacToe.new("XX-OOO---").winner? == 'O',
-	TicTacToe.new("XO-XOOX--").winner? == 'X'
+	TicTacToe.new("XXX------").winner? == 'X',
+	TicTacToe.new("---OOO---").winner? == 'O',
+	TicTacToe.new("X--X--X--").winner? == 'X',
+	TicTacToe.new("--X--X--X").winner? == 'X',
+	TicTacToe.new("O---O---O").winner? == 'O',
+	TicTacToe.new("--X-X-X--").winner? == 'X'
 	)
 puts 'passed!'
