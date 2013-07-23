@@ -1,3 +1,5 @@
+# IMPLEMENTATION
+
 class TicTacToe
 	attr_reader :board
 	def initialize(board)
@@ -11,5 +13,22 @@ class TicTacToe
 	end
 end
 
-puts board = TicTacToe.new("XXXOO----").winner?
-puts board = TicTacToe.new("XX-OOO---").winner?
+
+# TEST HARNESS
+
+def test(*bools)
+	bools.each_with_index do |result, i|
+		unless result
+			puts "Test ##{i} failed!"
+			abort
+		end
+	end
+end
+
+# TESTS
+
+test(
+	TicTacToe.new("XXXOO----").winner? == 'X',
+	TicTacToe.new("XX-OOO---").winner? == 'O'
+	)
+puts 'passed!'
