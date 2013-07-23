@@ -33,6 +33,10 @@ end
 
 # TEST HARNESS
 
+def test_winner(board, winner)
+	TicTacToe.new(board).winner? == winner
+end
+
 def test(*bools)
 	bools.each_with_index do |result, i|
 		unless result
@@ -44,12 +48,14 @@ end
 
 # TESTS
 
-test(
-	TicTacToe.new("XXX------").winner? == 'X',
-	TicTacToe.new("---OOO---").winner? == 'O',
-	TicTacToe.new("X--X--X--").winner? == 'X',
-	TicTacToe.new("--X--X--X").winner? == 'X',
-	TicTacToe.new("O---O---O").winner? == 'O',
-	TicTacToe.new("--X-X-X--").winner? == 'X'
-	)
-puts 'passed!'
+if $0 == __FILE__
+	test(
+		test_winner("XXX------", 'X'),
+		test_winner("---OOO---", 'O'),
+		test_winner("X--X--X--", 'X'),
+		test_winner("--X--X--X", 'X'),
+		test_winner("O---O---O", 'O'),
+		test_winner("--X-X-X--", 'X')
+		)
+	puts 'passed!'
+end
