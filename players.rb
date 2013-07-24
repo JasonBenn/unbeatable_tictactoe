@@ -1,3 +1,5 @@
+# AI determines the square with the highest probability of winning
+
 require './tictactoe'
 
 class AI

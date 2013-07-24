@@ -1,3 +1,5 @@
+# Determine if a board string has a winner
+
 # IMPLEMENTATION
 
 class TicTacToe
