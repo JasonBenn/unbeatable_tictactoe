@@ -12,6 +12,7 @@ class TicTacToe
 				return player if route.include?(player*3)
 			end
 		end
+		false
 	end
 
 	def row
@@ -53,7 +54,8 @@ if $0 == __FILE__
 		test_winner("XXX------", 'X'),
 		test_winner("X--X--X--", 'X'),
 		test_winner("O---O---O", 'O'),
-		test_winner("--X-X-X--", 'X')
+		test_winner("--X-X-X--", 'X'),
+		test_winner("X-X-X----", false)
 		)
 	puts 'passed!'
 end
