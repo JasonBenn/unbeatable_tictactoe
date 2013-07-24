@@ -11,11 +11,19 @@ class AI
 		end
 		false
 	end
+	def self.empty_spaces(board_string)
+		9.times.select do |cell|
+			board_string[cell] == '-'
+		end
+	end
+
 end
 
 test(
 	AI.winning_move('-XX------') == 0,
  	AI.winning_move('--X-X----') == 6,
- 	AI.winning_move('--X------') == false
+ 	AI.winning_move('--X------') == false,
+ 	AI.empty_spaces('-XX--XX--') == [0, 3, 4, 7, 8],
+ 	AI.empty_spaces('---------') == (0..8).to_a,
 	)
 puts 'passed!'
