@@ -11,6 +11,12 @@ class AI
 		end
 		false
 	end
+
+	def self.choose_next_move(board_string)
+		probabilities_array = calculate_probability(board_string)
+		index_of_max(probabilities_array)
+	end
+
 	def self.calculate_probability(board_string)
 		9.times.map do |space|
 			board_string[space] == '-' ? 1 : 0
@@ -23,6 +29,11 @@ class AI
 		end
 	end
 
+	private
+
+	def self.index_of_max(board_string)
+		board_string.each_with_index.max[1]
+	end
 end
 
 test(
@@ -32,5 +43,8 @@ test(
  	AI.empty_spaces('-XX--XX--') == [0, 3, 4, 7, 8],
  	AI.empty_spaces('---------') == (0..8).to_a,
  	AI.calculate_probability('XXXXXX---') == [0, 0, 0, 0, 0, 0, 1, 1, 1],
+ 	AI.choose_next_move('XXXXXXXX-') == 8,
+ 	AI.choose_next_move('-XXXXXXXX') == 0,
+ 	AI.choose_next_move('-XX-XXXXX') == 3
 	)
 puts 'passed!'
