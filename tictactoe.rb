@@ -3,7 +3,7 @@
 class TicTacToe
 	attr_reader :board
 	def initialize(board)
-		@board = board.insert(6, "\n").insert(3, "\n")
+		@board = board
 	end
 
 	def winner?
@@ -15,17 +15,17 @@ class TicTacToe
 	end
 
 	def row
-		board.each_line.map(&:chomp)
+		board.split('').each_slice(3).map(&:join)
 	end
 
 	def column
 		3.times.map do |n|
-			board.each_line.map { |row| row[n] }.join
+			board.split('').each_slice(3).map { |row| row[n] }.join
 		end
 	end
 
 	def diagonal
-		[[0, 5, 10], [2, 5, 8]].map do |diagonal|
+		[[0, 4, 8], [2, 4, 6]].map do |diagonal|
 			diagonal.map { |index| board[index] }.join
 		end
 	end
@@ -51,9 +51,7 @@ end
 if $0 == __FILE__
 	test(
 		test_winner("XXX------", 'X'),
-		test_winner("---OOO---", 'O'),
 		test_winner("X--X--X--", 'X'),
-		test_winner("--X--X--X", 'X'),
 		test_winner("O---O---O", 'O'),
 		test_winner("--X-X-X--", 'X')
 		)
