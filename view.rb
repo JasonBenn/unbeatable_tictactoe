@@ -1,0 +1,26 @@
+class View
+	GREEN = "\033[32;m"
+	RED = "\033[31;m"
+
+	def show(board_string)
+		print "\e[2J\e[f"
+		board_string.split(//).each_with_index do |cell, index|
+			print case cell
+			when 'X' then colorize(GREEN) { cell }
+			when 'O' then colorize(RED) 	{ cell }
+			else cell
+			end
+			puts if (index+1) % 3 == 0
+		end
+	end
+
+	def congratulate(winner)
+		puts "#{winner} wins!"
+	end
+
+  def colorize(ansi_color_code)
+    print ansi_color_code
+    print yield
+    print "\033[0m"
+  end
+end
