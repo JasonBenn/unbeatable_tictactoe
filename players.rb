@@ -25,18 +25,19 @@ class Human
 end
 
 class AI
-	def self.winning_move(board_string)
-		9.times do |n|
 	include InputValidator
 
+	def winning_move(board_string)
+		empty_spaces(board_string).each do |space|
 			dup_board = board_string.dup
-			dup_board[n] = 'X'
-			return n if TicTacToe.new(dup_board).winner?
+			dup_board[space] = 'X'
+			return space if TicTacToe.new(dup_board).winner?
 		end
 		false
 	end
 
-	def self.choose_next_move(board_string)
+	def choose_next_move(board_string)
+		return winning_move(board_string) if winning_move(board_string)
 		probabilities_array = calculate_probability(board_string)
 		index_of_max(probabilities_array)
 	end
