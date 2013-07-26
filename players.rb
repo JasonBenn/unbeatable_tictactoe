@@ -1,6 +1,15 @@
 # AI determines the square with the highest probability of winning
 
 require './tictactoe'
+class Human
+	def choose_next_move(board_string)
+		input = gets.to_i
+		until move_valid?(board_string, input)
+			input = choose_next_move(board_string)
+		end
+		input
+	end
+end
 
 class AI
 	def self.winning_move(board_string)
