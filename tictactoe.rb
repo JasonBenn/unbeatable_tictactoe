@@ -34,25 +34,16 @@ class TicTacToe
 	end
 end
 
-# TEST HARNESS
-
-def test_winner(board, winner)
-	TicTacToe.new(board).winner? == winner
-end
-
-def test(*bools)
-	bools.each_with_index do |result, i|
-		unless result
-			puts "Test ##{i+1} failed!"
-			abort
-		end
-	end
-end
-
 # TESTS
 
 if $0 == __FILE__
-	test(
+	require './test'
+
+	def test_winner(board, winner)
+		TicTacToe.new(board).winner? == winner
+	end
+
+	Tester.test(
 		test_winner("XXX------", 'X'),
 		test_winner("X--X--X--", 'X'),
 		test_winner("O---O---O", 'O'),

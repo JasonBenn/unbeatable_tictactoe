@@ -74,9 +74,10 @@ test(
 	)
 puts 'passed!'
 if $0 == __FILE__
+	require './test'
 	ai = AI.new
 
-	test(
+	Tester.test(
 		ai.winning_move('-XX------') == 0,
 		ai.winning_move('--X-X----') == 6,
 		ai.winning_move('--X------') == false,
