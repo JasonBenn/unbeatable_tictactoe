@@ -1,4 +1,5 @@
-class View
+module View
+	extend self
 	GREEN = "\033[32;m"
 	RED = "\033[31;m"
 

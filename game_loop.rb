@@ -1,12 +1,16 @@
 require './tictactoe.rb'
+require './players.rb'
 require './view.rb'
 
 class Game
-	attr_accessor :game, :view
+	attr_accessor :game, :view, :player1, :player2
 
-	def initialize(game = TicTacToe.new, view = View.new)
-		@game = game
-		@view = view
+	def initialize(args)
+		@game = args[:game] || TicTacToe.new
+		@view = args[:view] || View
+		@player1 = args[:player1]
+		@player2 = args[:player2]
+
 		play
 	end
 
@@ -20,4 +24,8 @@ class Game
 	end
 end
 
-Game.new
+Game.new({
+	player1: AI.new,
+	player2: AI.new
+	})
+
