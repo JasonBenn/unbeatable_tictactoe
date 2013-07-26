@@ -15,9 +15,11 @@ class Game
 	end
 
 	def play
-		until winner = game.winner?
-			input = gets.chomp.to_i
-			game.board[input] = 'X'
+		winner = nil
+		[[player1, "X"], [player2, "O"]].cycle do |player, icon|
+			break if winner = game.winner?
+			input = player.choose_next_move(game.board)
+			game.board[input] = icon
 			view.show(game.board)
 		end
 		view.congratulate(winner)
