@@ -1,15 +1,23 @@
 require './tictactoe.rb'
+require './view.rb'
 
 class Game
-	attr_reader :game
+	attr_accessor :game, :view
 
-	def initialize(board_string)
-		@game = TicTacToe.new(board_string)
+	def initialize(game = TicTacToe.new, view = View.new)
+		@game = game
+		@view = view
+		play
 	end
 
-	def show
-		[game.board[0..2], game.board[3..5], game.board[6..8]]
+	def play
+		until winner = game.winner?
+			input = gets.chomp.to_i
+			game.board[input] = 'X'
+			view.show(game.board)
+		end
+		view.congratulate(winner)
 	end
 end
 
-puts Game.new('---------').show
+Game.new

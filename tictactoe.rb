@@ -4,7 +4,7 @@
 
 class TicTacToe
 	attr_reader :board
-	def initialize(board)
+	def initialize(board = '---------')
 		@board = board
 	end
 
