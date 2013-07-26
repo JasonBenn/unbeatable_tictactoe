@@ -73,5 +73,21 @@ test(
  	AI.choose_next_move('-XX-XXXXX') == 3
 	)
 puts 'passed!'
+if $0 == __FILE__
+	ai = AI.new
+
+	test(
+		ai.winning_move('-XX------') == 0,
+		ai.winning_move('--X-X----') == 6,
+		ai.winning_move('--X------') == false,
+		ai.empty_spaces('-XX--XX--') == [0, 3, 4, 7, 8],
+		ai.empty_spaces('---------') == (0..8).to_a,
+		ai.calculate_probability('XXXXXX---') == [0, 0, 0, 0, 0, 0, 1, 1, 1],
+		ai.choose_next_move('XXXXXXXX-') == 8, #7
+		ai.choose_next_move('-XXXXXXXX') == 0,
+		ai.choose_next_move('-XX-XXXXX') == 3,
 		!InputValidator.move_valid?('X--------', 0),
 		InputValidator.move_valid?('---------', 0)
+		)
+	puts 'passed!'
+end
