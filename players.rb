@@ -1,7 +1,20 @@
 # AI determines the square with the highest probability of winning
 
 require './tictactoe'
+require './view'
+
+module InputValidator
+	extend self
+	def move_valid?(board_string, input)
+		valid = board_string[input] == '-'
+		View.move_invalid unless valid
+		valid
+	end
+end
+
 class Human
+	include InputValidator
+
 	def choose_next_move(board_string)
 		input = gets.to_i
 		until move_valid?(board_string, input)
@@ -14,6 +27,8 @@ end
 class AI
 	def self.winning_move(board_string)
 		9.times do |n|
+	include InputValidator
+
 			dup_board = board_string.dup
 			dup_board[n] = 'X'
 			return n if TicTacToe.new(dup_board).winner?
@@ -57,3 +72,5 @@ test(
  	AI.choose_next_move('-XX-XXXXX') == 3
 	)
 puts 'passed!'
+		!InputValidator.move_valid?('X--------', 0),
+		InputValidator.move_valid?('---------', 0)

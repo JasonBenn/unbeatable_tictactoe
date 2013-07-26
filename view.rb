@@ -18,6 +18,10 @@ class View
 		puts "#{winner} wins!"
 	end
 
+	def move_invalid
+		puts "Selection invalid!"
+	end
+
   def colorize(ansi_color_code)
     print ansi_color_code
     print yield
