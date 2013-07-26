@@ -16,7 +16,7 @@ module View
 	end
 
 	def congratulate(winner)
-		puts "#{winner} wins!"
+		puts winner == 'D' ? "Draw!" : "#{winner} wins!"
 	end
 
 	def move_invalid

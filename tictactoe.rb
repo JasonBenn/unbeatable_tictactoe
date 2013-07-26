@@ -14,6 +14,7 @@ class TicTacToe
 				return player if route.include?(player*3)
 			end
 		end
+		return 'D' unless board.include? '-'
 		false
 	end
 
@@ -48,7 +49,8 @@ if $0 == __FILE__
 		test_winner("X--X--X--", 'X'),
 		test_winner("O---O---O", 'O'),
 		test_winner("--X-X-X--", 'X'),
-		test_winner("X-X-X----", false)
+		test_winner("X-X-X----", false),
+		test_winner("XOXOXOOXO", 'D')
 		)
 	puts 'passed!'
 end
