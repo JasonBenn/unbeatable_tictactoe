@@ -11,8 +11,6 @@ class Game
 		@view = args[:view] || View
 		@player1 = players[args[:player1]].new('X')
 		@player2 = players[args[:player2]].new('O')
-
-		play
 	end
 
 	def play
@@ -27,8 +25,9 @@ class Game
 	end
 end
 
-Game.new({
-	player1: :ai,
-	player2: :ai
-	})
-
+if $0 == __FILE__
+	Game.new({
+		player1: :ai,
+		player2: :ai
+		}).play
+end
