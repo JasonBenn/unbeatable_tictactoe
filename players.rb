@@ -15,6 +15,10 @@ end
 class Human
 	include InputValidator
 
+	def initialize(icon)
+		@icon = icon
+	end
+
 	def choose_next_move(board_string)
 		input = gets.to_i
 		until move_valid?(board_string, input)
@@ -27,10 +31,14 @@ end
 class AI
 	include InputValidator
 
+	def initialize(icon)
+		@icon = icon
+	end
+
 	def winning_move(board_string)
 		empty_spaces(board_string).each do |space|
 			dup_board = board_string.dup
-			dup_board[space] = 'X'
+			dup_board[space] = @icon
 			return space if TicTacToe.new(dup_board).winner?
 		end
 		false

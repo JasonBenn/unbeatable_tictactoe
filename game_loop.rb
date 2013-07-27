@@ -6,10 +6,11 @@ class Game
 	attr_accessor :game, :view, :player1, :player2
 
 	def initialize(args)
+		players = { human: Human, ai: AI }
 		@game = args[:game] || TicTacToe.new
 		@view = args[:view] || View
-		@player1 = args[:player1]
-		@player2 = args[:player2]
+		@player1 = players[args[:player1]].new('X')
+		@player2 = players[args[:player2]].new('O')
 
 		play
 	end
@@ -27,7 +28,7 @@ class Game
 end
 
 Game.new({
-	player1: AI.new,
-	player2: AI.new
+	player1: :ai,
+	player2: :ai
 	})
 
