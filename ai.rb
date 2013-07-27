@@ -59,6 +59,8 @@ class AI
 	end
 end
 
+if $0 == __FILE__ || $0 == 'test.rb'
+	require './test'
 	ai = AI.new('X')
 
 	# puts "RETURNED: #{ai.compute_possibilities('XX-OO-XO-', 'X', 2)}"
@@ -75,3 +77,4 @@ end
 		ai.choose_next_move('-XX-XXXXX') == 0,
 		)
 	puts 'passed: ai.rb!'
+end

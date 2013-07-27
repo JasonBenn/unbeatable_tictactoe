@@ -37,7 +37,7 @@ end
 
 # TESTS
 
-if $0 == __FILE__
+if $0 == __FILE__ || $0 == 'test.rb'
 	require './test'
 
 	def test_winner(board, winner)
@@ -52,5 +52,5 @@ if $0 == __FILE__
 		test_winner("X-X-X----", false),
 		test_winner("XOXOXOOXO", 'D')
 		)
-	puts 'passed!'
+	puts 'passed: tictactoe.rb!'
 end

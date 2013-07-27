@@ -1,6 +1,7 @@
-require './tictactoe.rb'
-require './players.rb'
-require './view.rb'
+require './tictactoe'
+require './view'
+require './human'
+require './ai'
 
 class Game
 	attr_accessor :game, :view, :player1, :player2
