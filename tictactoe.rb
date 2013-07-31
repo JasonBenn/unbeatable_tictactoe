@@ -41,10 +41,10 @@ class TicTacToe
 	def score(cell)
 		score = 0
 		relevant_sets_of_three(cell).map do |path|
-			case path.map {|cell| board[cell]}.count('X')
-			when 3 then score += 100
-			when 2 then score += 10
-			when 1 then score += 1
+			case path.map { |cell| board[cell] }.count('X')
+			when 2 then score += 100
+			when 1 then score += 10
+			when 0 then score += 1
 			end
 		end
 		score
