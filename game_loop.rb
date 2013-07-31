@@ -39,6 +39,11 @@ if $0 == __FILE__
 				}).play
 		end
 		counter.display_results(ARGV[1])
+	elsif ARGV[0] == "ai-first"
+			Game.new({
+				player1: AI,
+				player2: Human
+				}).play
 	else
 		Game.new.play
 	end

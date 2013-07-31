@@ -9,7 +9,7 @@ class Human
 	end
 
 	def choose_next_move(board_string)
-		input = gets.to_i
+		input = $stdin.gets.to_i
 		until move_valid?(board_string, input)
 			input = choose_next_move(board_string)
 		end
