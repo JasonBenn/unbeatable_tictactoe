@@ -17,6 +17,7 @@ class Game
 
 	def play
 		winner = nil
+		view.show(game.board)
 		[[player1, "X"], [player2, "O"]].cycle do |player, icon|
 			break if winner = game.winner?
 			input = player.choose_next_move(game.board)
