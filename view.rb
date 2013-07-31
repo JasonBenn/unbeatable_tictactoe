@@ -25,6 +25,8 @@ module View
 		puts "Selection invalid!"
 	end
 
+	private
+
   def colorize(ansi_color_code)
   	print "| ", ansi_color_code, yield, " \033[0m"
   end

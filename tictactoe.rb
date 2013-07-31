@@ -19,6 +19,20 @@ class TicTacToe
 		9.times.select { |n| board[n] == '-' }
 	end
 
+	def score(cell)
+		score = 0
+		relevant_sets_of_three(cell).map do |path|
+			case path.map { |cell| board[cell] }.count('X')
+			when 2 then score += 100
+			when 1 then score += 10
+			when 0 then score += 1
+			end
+		end
+		score
+	end
+
+	private
+
 	def sets_of_three
 		[
 			[0, 1, 2],
@@ -36,18 +50,6 @@ class TicTacToe
 
 	def relevant_sets_of_three(cell)
 		sets_of_three.select { |set| set.include? cell }
-	end
-
-	def score(cell)
-		score = 0
-		relevant_sets_of_three(cell).map do |path|
-			case path.map { |cell| board[cell] }.count('X')
-			when 2 then score += 100
-			when 1 then score += 10
-			when 0 then score += 1
-			end
-		end
-		score
 	end
 end
 
