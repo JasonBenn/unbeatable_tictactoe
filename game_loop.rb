@@ -9,11 +9,10 @@ class Game
 	attr_accessor :game, :view, :player1, :player2
 
 	def initialize(args)
-		players = { human: Human, ai: AI }
-		@game = args[:game] || TicTacToe.new
-		@view = args[:view] || View
-		@player1 = players[args[:player1]].new('X')
-		@player2 = players[args[:player2]].new('O')
+		@game 	 = TicTacToe.new
+		@view 	 = args[:view] 		|| View
+		@player1 = args[:player1] || AI.new('X')
+		@player2 = args[:player2] || RandomAI.new('O')
 	end
 
 	def play
