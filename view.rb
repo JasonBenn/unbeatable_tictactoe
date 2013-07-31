@@ -29,3 +29,7 @@ module View
     print "\033[0m"
   end
 end
+
+if $0 == __FILE__
+	View.show('XOX------')
+end

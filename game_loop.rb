@@ -26,7 +26,13 @@ class Game
 	end
 end
 
-if $0 == __FILE__
+# if $0 == __FILE__
+# 	Game.new({
+# 		player1: :ai,
+# 		player2: :human
+# 		}).play
+# end
+
 	Game.new({
 		player1: :ai,
 		player2: :ai

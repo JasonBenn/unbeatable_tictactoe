@@ -37,12 +37,14 @@ end
 
 # TESTS
 
-if $0 == __FILE__ || $0 == 'test.rb'
+if $0 == __FILE__
 	require './test'
 
 	def test_winner(board, winner)
 		TicTacToe.new(board).winner? == winner
 	end
+
+	puts TicTacToe.new('------X-X').score(7)
 
 	Tester.test(
 		test_winner("XXX------", 'X'),
@@ -50,7 +52,8 @@ if $0 == __FILE__ || $0 == 'test.rb'
 		test_winner("O---O---O", 'O'),
 		test_winner("--X-X-X--", 'X'),
 		test_winner("X-X-X----", false),
-		test_winner("XOXOXOOXO", 'D')
+		test_winner("XOXOXOOXO", 'D'),
+		TicTacToe.new('---------').empty_spaces == (0..8).to_a,
+		TicTacToe.new('--------X').empty_spaces == (0..7).to_a
 		)
-	puts 'passed: tictactoe.rb!'
 end

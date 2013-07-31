@@ -54,24 +54,13 @@ class AI
 	end
 end
 
-if $0 == __FILE__ || $0 == 'test.rb'
+if $0 == __FILE__
 	require './test'
 	ai = AI.new('X')
-
-	# puts "RETURNED: #{ai.compute_possibilities('XX-OO-XO-', 'X', 2)}"
-
 	Tester.test(
-		ai.winning_move('-XX------') == 0,
-		ai.winning_move('--X-X----') == 6,
-		ai.winning_move('--X------') == nil,
-		ai.empty_spaces('-XX--XX--') == [0, 3, 4, 7, 8],
-		ai.empty_spaces('---------') == (0..8).to_a,
-		ai.choose_next_move('XXXXXXXX-') == 8,
-		ai.choose_next_move('-XXXXXXXX') == 0,
-		ai.choose_next_move('-XX-XXXXX') == 0,
-		ai.compute_possibilities('XX-OO-XO-', 'X', 2) == ['X'],
-		ai.compute_possibilities('XX-OO-XO-', 'X', 5).sort == ['D', 'X'],
-		ai.compute_possibilities('XX-OO-XO-', 'X', 8).sort == ['D', 'O']
+		ai.choose_next_move('XX-------') == 2,
+		ai.choose_next_move('OO-------') == 2,
+		ai.choose_next_move('OO-XX----') == 5,
+		ai.choose_next_move('XOX------') == 4,
 		)
-	puts 'passed: ai.rb!'
 end

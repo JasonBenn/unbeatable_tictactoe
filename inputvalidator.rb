@@ -7,7 +7,7 @@ module InputValidator
 	end
 end
 
-if $0 == __FILE__ || $0 == 'test.rb'
+if $0 == __FILE__
 	require './test'
 	require './view'
 
@@ -15,5 +15,4 @@ if $0 == __FILE__ || $0 == 'test.rb'
 		!InputValidator.move_valid?('X--------', 0),
 		InputValidator.move_valid?('---------', 0)
 		)
-	puts 'passed: inputvalidator.rb!'
 end
