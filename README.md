@@ -1,13 +1,13 @@
 unbeatable_tictactoe
 ====================
 
-This is an unbeatable game of Tic Tac Toe, with significantly better performance than a Minimax algorithm-based solution.
+This is an unbeatable AI for Tic Tac Toe.
 
 There are a few command line options:
 
 1.  Play an ordinary game, you first, with `ruby game_loop.rb`
 2.  Let the AI play first with `ruby game_loop.rb ai-first`
-3.  Finally, you can run the program N times with `ruby game_loop.rb test 1000` (replace 1000 with whatever number you like, obvs) to display a summary of game outcomes.
+3.  Finally, you can run the program N times with `ruby game_loop.rb test 1000` (replace 1000 with whatever number you like) to display a summary of game outcomes.
 
 The AI chooses options based on the following algorithm (see `AI#choose_next_move`):
 
