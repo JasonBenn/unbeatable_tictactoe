@@ -18,19 +18,25 @@ class TicTacToe
 		false
 	end
 
-	def row
-		board.split('').each_slice(3).map(&:join)
 	end
 
-	def column
-		3.times.map do |n|
-			board.split('').each_slice(3).map { |row| row[n] }.join
-		end
+	def sets_of_three
+		[
+			[0, 1, 2],
+			[3, 4, 5],
+			[6, 7, 8],
+
+			[0, 3, 6],
+			[1, 4, 7],
+			[2, 5, 8],
+
+			[0, 4, 8],
+			[2, 4, 6]
+		]
 	end
 
-	def diagonal
-		[[0, 4, 8], [2, 4, 6]].map do |diagonal|
-			diagonal.map { |index| board[index] }.join
+	end
+
 		end
 	end
 end
