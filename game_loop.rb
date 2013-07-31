@@ -10,9 +10,9 @@ class Game
 
 	def initialize(args)
 		@game 	 = TicTacToe.new
-		@view 	 = args[:view] 		|| View
-		@player1 = args[:player1] || AI.new('X')
-		@player2 = args[:player2] || RandomAI.new('O')
+		@view 	 = args[:view] 		 || View
+		@player1 = (args[:player1] || Human).new('X')
+		@player2 = (args[:player2] || AI).	 new('O')
 	end
 
 	def play
