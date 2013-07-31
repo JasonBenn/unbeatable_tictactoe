@@ -1,9 +1,11 @@
 require './tictactoe'
 
 class AI < Struct.new(:symbol)
+	attr_reader :game, :board
 
 	def choose_next_move(board)
-		game = TicTacToe.new(board)
+		@board = board
+		@game = TicTacToe.new(board)
 		[symbol, other_symbol].each do |symbol|
 			game.empty_spaces.each do |space|
 				temp_board = board.dup
@@ -11,7 +13,14 @@ class AI < Struct.new(:symbol)
 				return space if TicTacToe.new(temp_board).winner?
 			end
 		end
+
 		return 1 if danger_case?
+		highest_scoring_move
+	end
+
+	private
+
+	def highest_scoring_move
 		space_scores = game.empty_spaces.map do |space|
 			[space, game.score(space)]
 		end
