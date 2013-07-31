@@ -11,10 +11,22 @@ class AI < Struct.new(:symbol)
 				return space if TicTacToe.new(temp_board).winner?
 			end
 		end
+		return 1 if danger_case?
 		space_scores = game.empty_spaces.map do |space|
 			[space, game.score(space)]
 		end
 		space_scores.max_by { |index, score| score }[0]
+	end
+
+	def danger_case?
+		[ game.empty_spaces.count == 6,
+			board[4] == symbol,
+			opponent_has_opposite_corners
+			].all?
+	end
+
+	def opponent_has_opposite_corners
+		board[2] == other_symbol && board[6] == other_symbol || board[0] == other_symbol && board[8] == other_symbol
 	end
 
 	def other_symbol
