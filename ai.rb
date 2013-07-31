@@ -6,6 +6,14 @@ class AI < Struct.new(:symbol)
 	def choose_next_move(board)
 		@board = board
 		@game = TicTacToe.new(board)
+		return imminent_victor? if imminent_victor?
+		return 1 if danger_case?
+		highest_scoring_move
+	end
+
+	private
+
+	def imminent_victor?
 		[symbol, other_symbol].each do |symbol|
 			game.empty_spaces.each do |space|
 				temp_board = board.dup
@@ -13,18 +21,7 @@ class AI < Struct.new(:symbol)
 				return space if TicTacToe.new(temp_board).winner?
 			end
 		end
-
-		return 1 if danger_case?
-		highest_scoring_move
-	end
-
-	private
-
-	def highest_scoring_move
-		space_scores = game.empty_spaces.map do |space|
-			[space, game.score(space)]
-		end
-		space_scores.max_by { |index, score| score }[0]
+		false
 	end
 
 	def danger_case?
@@ -36,6 +33,13 @@ class AI < Struct.new(:symbol)
 
 	def opponent_has_opposite_corners
 		board[2] == other_symbol && board[6] == other_symbol || board[0] == other_symbol && board[8] == other_symbol
+	end
+
+	def highest_scoring_move
+		space_scores = game.empty_spaces.map do |space|
+			[space, game.score(space)]
+		end
+		space_scores.max_by { |index, score| score }[0]
 	end
 
 	def other_symbol
