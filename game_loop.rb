@@ -1,7 +1,9 @@
+require './counter'
 require './tictactoe'
 require './view'
 require './human'
 require './ai'
+require './randomai'
 
 class Game
 	attr_accessor :game, :view, :player1, :player2
@@ -33,8 +35,10 @@ end
 # 		}).play
 # end
 
+counter = Counter.new
+100.times do
 	Game.new({
-		player1: :ai,
-		player2: :ai
+		view: counter
 		}).play
 end
+p counter.winners
