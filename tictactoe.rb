@@ -1,6 +1,9 @@
 class TicTacToe
 	attr_reader :board
+	attr_accessor :history
+
 	def initialize(board = '---------')
+		@history = []
 		@board = board
 	end
 
@@ -20,8 +23,7 @@ class TicTacToe
 	end
 
 	def sets_of_three
-		[
-			[0, 1, 2],
+		[ [0, 1, 2],
 			[3, 4, 5],
 			[6, 7, 8],
 
@@ -30,8 +32,7 @@ class TicTacToe
 			[2, 5, 8],
 
 			[0, 4, 8],
-			[2, 4, 6]
-		]
+			[2, 4, 6] ]
 	end
 
 	def relevant_sets_of_three(cell)

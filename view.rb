@@ -17,7 +17,7 @@ module View
 		end
 	end
 
-	def congratulate(winner)
+	def congratulate(winner, game)
 		puts winner == 'D' ? "Draw!" : "#{winner} wins!"
 	end
 

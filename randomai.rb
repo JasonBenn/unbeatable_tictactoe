@@ -1,7 +1,9 @@
 require './tictactoe'
 
 class RandomAI < Struct.new(:icon)
-	def choose_next_move(board_string)
-		TicTacToe.new(board_string).empty_spaces.sample
+	def choose_next_move(game)
+		choice = game.empty_spaces.sample
+		game.history << [icon, choice]
+		choice
 	end
 end

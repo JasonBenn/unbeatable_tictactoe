@@ -1,3 +1,5 @@
+require './view'
+
 class Counter
 	attr_reader :winners
 
@@ -8,7 +10,12 @@ class Counter
 	def show(board)
 	end
 
-	def congratulate(winner)
+	def congratulate(winner, game)
+		if winner == 'X'
+			View.show(game.board)
+			puts game.history.map(&:join)
+			# abort
+		end
 		@winners[winner] += 1
 	end
 end
