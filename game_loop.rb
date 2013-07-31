@@ -1,6 +1,6 @@
-require './counter'
 require './tictactoe'
 require './view'
+require './counter'
 require './human'
 require './ai'
 require './randomai'
@@ -8,7 +8,7 @@ require './randomai'
 class Game
 	attr_accessor :game, :view, :player1, :player2
 
-	def initialize(args)
+	def initialize(args = {})
 		@game 	 = TicTacToe.new
 		@view 	 = args[:view] 		 || View
 		@player1 = (args[:player1] || Human).new('X')
@@ -28,17 +28,18 @@ class Game
 	end
 end
 
-# if $0 == __FILE__
-# 	Game.new({
-# 		player1: :ai,
-# 		player2: :human
-# 		}).play
-# end
-
-counter = Counter.new
-100.times do
-	Game.new({
-		view: counter
-		}).play
+if $0 == __FILE__
+	if ARGV[0] == "test"
+		counter = Counter.new
+		ARGV[1].to_i.times do
+			Game.new({
+				view: counter,
+				player1: RandomAI,
+				player2: AI
+				}).play
+		end
+		counter.display_results(ARGV[1])
+	else
+		Game.new.play
+	end
 end
-p counter.winners

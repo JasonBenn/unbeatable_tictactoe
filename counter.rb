@@ -11,4 +11,11 @@ class Counter
 	def congratulate(winner)
 		@winners[winner] += 1
 	end
+
+	def display_results(tests)
+		puts "Game outcomes: RandomAI (X) vs. Smart AI (O) #{tests} times:"
+		@winners.each do |result, count|
+			puts "#{result}: #{count}"
+		end
+	end
 end
