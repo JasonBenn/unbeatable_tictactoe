@@ -1,56 +1,24 @@
 require './tictactoe'
-require './view'
-require './inputvalidator'
 
-class AI
-	include InputValidator
-	attr_reader :icon
+class AI < Struct.new(:symbol)
 
-	def initialize(icon)
-		@icon = icon
-	end
-
-	def choose_next_move(board_string)
-		return winning_move(board_string) if winning_move(board_string)
-		probabilities_array = calculate_probability(board_string)
-		index_of_max(probabilities_array)
-	end
-
-	def winning_move(board_string)
-		empty_spaces(board_string).each do |space|
-			dup_board = board_string.dup
-			dup_board[space] = @icon
-			return space if TicTacToe.new(dup_board).winner?
+	def choose_next_move(board)
+		game = TicTacToe.new(board)
+		[symbol, other_symbol].each do |symbol|
+			game.empty_spaces.each do |space|
+				temp_board = board.dup
+				temp_board[space] = symbol
+				return space if TicTacToe.new(temp_board).winner?
+			end
 		end
-		nil
-	end
-
-	def calculate_probability(board_string)
-		9.times.map do |space|
-			board_string[space] == '-' ? 1 : 0
+		space_scores = game.empty_spaces.map do |space|
+			[space, game.score(space)]
 		end
+		space_scores.max_by { |index, score| score }[0]
 	end
 
-	def compute_possibilities(board_string, current_player, index, answers = [])
-		board_string[index] = current_player
-		game = TicTacToe.new(board_string)
-		return answers << game.winner? if game.winner?
-		empty_spaces(board_string).each do |space|
-			compute_possibilities(board_string.dup, ['X', 'O'].reject { |icon| icon == current_player }[0], space, answers)
-		end
-		answers
-	end
-
-	def empty_spaces(board_string)
-		9.times.select do |cell|
-			board_string[cell] == '-'
-		end
-	end
-
-	private
-
-	def index_of_max(board_string)
-		board_string.each_with_index.max[1]
+	def other_symbol
+		symbol == 'X' ? 'O' : 'X'
 	end
 end
 

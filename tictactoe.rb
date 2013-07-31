@@ -1,7 +1,3 @@
-# Determine if a board string has a winner
-
-# IMPLEMENTATION
-
 class TicTacToe
 	attr_reader :board
 	def initialize(board = '---------')
@@ -9,15 +5,18 @@ class TicTacToe
 	end
 
 	def winner?
-		['X', 'O'].each do |player|
-			[row, column, diagonal].each do |route|
-				return player if route.include?(player*3)
+		['X', 'O'].each do |player_symbol|
+			sets_of_three.each do |set|
+				actual = set.map { |cell| board[cell] }
+				return player_symbol if actual == [player_symbol] * 3
 			end
 		end
 		return 'D' unless board.include? '-'
 		false
 	end
 
+	def empty_spaces
+		9.times.select { |n| board[n] == '-' }
 	end
 
 	def sets_of_three
@@ -35,9 +34,20 @@ class TicTacToe
 		]
 	end
 
+	def relevant_sets_of_three(cell)
+		sets_of_three.select { |set| set.include? cell }
 	end
 
+	def score(cell)
+		score = 0
+		relevant_sets_of_three(cell).map do |path|
+			case path.map {|cell| board[cell]}.count('X')
+			when 3 then score += 100
+			when 2 then score += 10
+			when 1 then score += 1
+			end
 		end
+		score
 	end
 end
 
