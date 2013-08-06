@@ -1,8 +1,8 @@
 module InputValidator
   extend self
-  def move_valid?(board_string, input)
+  def move_valid?(board_string, input, view)
     valid = board_string[input] == '-'
-    View.move_invalid unless valid
+    view.move_invalid unless valid
     valid
   end
 end

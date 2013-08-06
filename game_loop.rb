@@ -6,6 +6,7 @@ require './ai'
 require './randomai'
 
 class Game
+  include InputValidator
   attr_accessor :game, :view, :player1, :player2
 
   def initialize(args = {})
@@ -20,8 +21,10 @@ class Game
     view.show(game.board)
     [[player1, "X"], [player2, "O"]].cycle do |player, icon|
       break if winner = game.winner?
-      input = player.choose_next_move(game.board)
       game.board[input] = icon
+      begin
+        input = player.choose_next_move(game.board)
+      end until move_valid?(game.board, input, view)
       view.show(game.board)
     end
     view.congratulate(winner)
