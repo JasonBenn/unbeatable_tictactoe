@@ -5,10 +5,10 @@ class TicTacToe
   end
 
   def winner?
-    ['X', 'O'].each do |player_symbol|
+    ['X', 'O'].each do |player_icon|
       sets_of_three.each do |set|
         actual = set.map { |cell| board[cell] }
-        return player_symbol if actual == [player_symbol] * 3
+        return player_icon if actual == [player_icon] * 3
       end
     end
     return 'D' unless board.include? '-'

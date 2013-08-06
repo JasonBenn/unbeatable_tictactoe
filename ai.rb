@@ -1,6 +1,6 @@
 require './tictactoe'
 
-class AI < Struct.new(:symbol)
+class AI < Struct.new(:icon)
   attr_reader :game, :board
 
   def choose_next_move(board)
@@ -14,10 +14,10 @@ class AI < Struct.new(:symbol)
   private
 
   def imminent_victor?
-    [symbol, other_symbol].each do |symbol|
+    [icon, other_icon].each do |icon|
       game.empty_spaces.each do |space|
         temp_board = board.dup
-        temp_board[space] = symbol
+        temp_board[space] = icon
         return space if TicTacToe.new(temp_board).winner?
       end
     end
@@ -26,13 +26,13 @@ class AI < Struct.new(:symbol)
 
   def danger_case?
     [ game.empty_spaces.count == 6,
-      board[4] == symbol,
+      board[4] == icon,
       opponent_has_opposite_corners
       ].all?
   end
 
   def opponent_has_opposite_corners
-    board[2] == other_symbol && board[6] == other_symbol || board[0] == other_symbol && board[8] == other_symbol
+    board[2] == other_icon && board[6] == other_icon || board[0] == other_icon && board[8] == other_icon
   end
 
   def highest_scoring_move
@@ -42,8 +42,8 @@ class AI < Struct.new(:symbol)
     space_scores.max_by { |index, score| score }[0]
   end
 
-  def other_symbol
-    symbol == 'X' ? 'O' : 'X'
+  def other_icon
+    icon == 'X' ? 'O' : 'X'
   end
 end
 
