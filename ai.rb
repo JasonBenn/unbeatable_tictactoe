@@ -46,14 +46,3 @@ class AI < Struct.new(:icon)
     icon == 'X' ? 'O' : 'X'
   end
 end
-
-if $0 == __FILE__
-  require './test'
-  ai = AI.new('X')
-  Tester.test(
-    ai.choose_next_move('XX-------') == 2,
-    ai.choose_next_move('OO-------') == 2,
-    ai.choose_next_move('OO-XX----') == 5,
-    ai.choose_next_move('XOX------') == 4,
-    )
-end
