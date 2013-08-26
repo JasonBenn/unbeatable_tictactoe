@@ -1,6 +1,7 @@
+require_relative './player'
 require_relative 'tic_tac_toe'
 
-class AI < Struct.new(:icon)
+class AI < Player
   attr_reader :game, :board
 
   def choose_next_move(board)

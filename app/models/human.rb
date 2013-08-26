@@ -1,9 +1,6 @@
-class Human
-  attr_reader :icon
+require_relative './player'
 
-  def initialize(icon)
-    @icon = icon
-  end
+class Human < Player
 
   def choose_next_move(board_string)
     $stdin.gets.to_i
