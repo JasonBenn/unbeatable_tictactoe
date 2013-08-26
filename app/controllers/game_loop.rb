@@ -1,11 +1,3 @@
-require './app/models/tic_tac_toe'
-require './app/views/view'
-require './app/views/counter'
-require './app/models/human'
-require './app/models/ai'
-require './app/models/random_ai'
-require './app/helpers/move_validator'
-
 class Game
   include MoveValidator
   attr_accessor :game, :board, :view, :player1, :player2
@@ -34,26 +26,5 @@ class Game
       view.show(board)
     end
     view.congratulate(winner)
-  end
-end
-
-if $0 == __FILE__
-  if ARGV[0] == "test"
-    counter = Counter.new
-    ARGV[1].to_i.times do
-      Game.new({
-        view: counter,
-        player1: RandomAI,
-        player2: AI
-        }).play
-    end
-    counter.display_results(ARGV[1])
-  elsif ARGV[0] == "ai-first"
-      Game.new({
-        player1: AI,
-        player2: Human
-        }).play
-  else
-    Game.new.play
   end
 end
