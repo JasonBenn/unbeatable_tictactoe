@@ -1,4 +1,4 @@
-require './tictactoe'
+require_relative 'tic_tac_toe'
 
 class RandomAI < Struct.new(:icon)
   def choose_next_move(board_string)

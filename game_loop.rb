@@ -1,9 +1,9 @@
-require './tictactoe'
-require './view'
-require './counter'
-require './human'
-require './ai'
-require './randomai'
+require './app/models/tic_tac_toe'
+require './app/views/view'
+require './app/views/counter'
+require './app/models/human'
+require './app/models/ai'
+require './app/models/random_ai'
 
 class Game
   include InputValidator

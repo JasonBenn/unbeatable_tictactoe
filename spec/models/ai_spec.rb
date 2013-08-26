@@ -1,5 +1,5 @@
 require 'rspec'
-require_relative '../models/ai.rb'
+require_relative '../../app/models/ai.rb'
 
 describe AI do
 

@@ -1,4 +1,4 @@
-require './tictactoe'
+require_relative 'tic_tac_toe'
 
 class AI < Struct.new(:icon)
   attr_reader :game, :board
