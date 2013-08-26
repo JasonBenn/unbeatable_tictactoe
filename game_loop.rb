@@ -4,9 +4,10 @@ require './app/views/counter'
 require './app/models/human'
 require './app/models/ai'
 require './app/models/random_ai'
+require './app/helpers/move_validator'
 
 class Game
-  include InputValidator
+  include MoveValidator
   attr_accessor :game, :view, :player1, :player2
 
   def initialize(args = {})
@@ -23,7 +24,7 @@ class Game
       break if winner = game.winner?
 
       cell = player.choose_next_move(game.board)
-      until InputValidator.move_valid?(game.board, cell)
+      until MoveValidator.move_valid?(game.board, cell)
         view.move_invalid
         cell = player.choose_next_move(game.board)
       end
