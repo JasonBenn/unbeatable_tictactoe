@@ -1,5 +1,3 @@
-require './inputvalidator'
-
 class Human
   attr_reader :icon
 

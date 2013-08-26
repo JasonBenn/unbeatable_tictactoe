@@ -19,12 +19,16 @@ class Game
   def play
     winner = nil
     view.show(game.board)
-    [[player1, "X"], [player2, "O"]].cycle do |player, icon|
+    [player1, player2].cycle do |player|
       break if winner = game.winner?
-      game.board[input] = icon
-      begin
-        input = player.choose_next_move(game.board)
-      end until move_valid?(game.board, input, view)
+
+      cell = player.choose_next_move(game.board)
+      until InputValidator.move_valid?(game.board, cell)
+        view.move_invalid
+        cell = player.choose_next_move(game.board)
+      end
+
+      game.board[cell] = player.icon
       view.show(game.board)
     end
     view.congratulate(winner)
