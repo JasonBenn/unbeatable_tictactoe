@@ -15,17 +15,17 @@ class AI < Struct.new(:icon)
 
   def imminent_victor?
     [icon, other_icon].each do |icon|
-      game.empty_spaces.each do |space|
+      game.empty_cells.each do |cell|
         temp_board = board.dup
-        temp_board[space] = icon
-        return space if TicTacToe.new(temp_board).winner?
+        temp_board[cell] = icon
+        return cell if TicTacToe.new(temp_board).winner?
       end
     end
     false
   end
 
   def danger_case?
-    [ game.empty_spaces.count == 6,
+    [ game.empty_cells.count == 6,
       board[4] == icon,
       opponent_has_opposite_corners
       ].all?
@@ -36,10 +36,10 @@ class AI < Struct.new(:icon)
   end
 
   def highest_scoring_move
-    space_scores = game.empty_spaces.map do |space|
-      [space, game.score(space)]
+    cell_scores = game.empty_cells.map do |cell|
+      [cell, game.score(cell)]
     end
-    space_scores.max_by { |index, score| score }[0]
+    cell_scores.max_by { |index, score| score }[0]
   end
 
   def other_icon

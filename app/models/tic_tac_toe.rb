@@ -15,7 +15,7 @@ class TicTacToe
     false
   end
 
-  def empty_spaces
+  def empty_cells
     9.times.select { |n| board[n] == '-' }
   end
 
@@ -71,7 +71,7 @@ if $0 == __FILE__
     test_winner("--X-X-X--", 'X'),
     test_winner("X-X-X----", false),
     test_winner("XOXOXOOXO", 'D'),
-    TicTacToe.new('---------').empty_spaces == (0..8).to_a,
-    TicTacToe.new('--------X').empty_spaces == (0..7).to_a
+    TicTacToe.new('---------').empty_cells == (0..8).to_a,
+    TicTacToe.new('--------X').empty_cells == (0..7).to_a
     )
 end
