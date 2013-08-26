@@ -1,6 +1,3 @@
-require_relative './player'
-require_relative 'tic_tac_toe'
-
 class AI < Player
   attr_reader :game, :board
 
