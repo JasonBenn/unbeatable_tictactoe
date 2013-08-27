@@ -52,26 +52,3 @@ class TicTacToe
     sets_of_three.select { |set| set.include? cell }
   end
 end
-
-# TESTS
-
-if $0 == __FILE__
-  require './test'
-
-  def test_winner(board, winner)
-    TicTacToe.new(board).winner? == winner
-  end
-
-  puts TicTacToe.new('------X-X').score(7)
-
-  Tester.test(
-    test_winner("XXX------", 'X'),
-    test_winner("X--X--X--", 'X'),
-    test_winner("O---O---O", 'O'),
-    test_winner("--X-X-X--", 'X'),
-    test_winner("X-X-X----", false),
-    test_winner("XOXOXOOXO", 'D'),
-    TicTacToe.new('---------').empty_cells == (0..8).to_a,
-    TicTacToe.new('--------X').empty_cells == (0..7).to_a
-    )
-end
