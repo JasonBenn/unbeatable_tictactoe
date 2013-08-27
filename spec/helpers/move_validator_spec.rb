@@ -1,4 +1,4 @@
-require 'rspec'
+require_relative '../spec_helper'
 require_relative '../../app/helpers/move_validator'
 
 describe MoveValidator do
