@@ -35,7 +35,7 @@ class AI < Player
 
   def highest_scoring_move
     cell_scores = game.empty_cells.map do |cell|
-      [cell, game.score(cell)]
+      [cell, game.score(cell, other_icon)]
     end
     cell_scores.max_by { |index, score| score }[0]
   end

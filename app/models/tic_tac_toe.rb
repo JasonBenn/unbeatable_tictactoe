@@ -19,10 +19,10 @@ class TicTacToe
     9.times.select { |n| board[n] == '-' }
   end
 
-  def score(cell)
+  def score(cell, opponent_icon)
     score = 0
     relevant_sets_of_three(cell).map do |path|
-      case path.map { |cell| board[cell] }.count('X')
+      case path.map { |cell| board[cell] }.count(opponent_icon)
       when 2 then score += 100
       when 1 then score += 10
       when 0 then score += 1
