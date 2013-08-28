@@ -1,6 +1,4 @@
 require_relative '../spec_helper'
-require_relative '../../app/models/player'
-require_relative '../../app/models/ai'
 
 describe AI do
 
@@ -22,6 +20,10 @@ describe AI do
 
 			it "should complete a diagonal" do
 				expect(ai.choose_next_move('XO--X----')).to eq 8
+			end
+
+			it "should choose a win over a block" do
+				expect(ai.choose_next_move('OO-XX----')).to eq 5
 			end
 
 			it "should choose a win over a block" do

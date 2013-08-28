@@ -1,5 +1,4 @@
 require_relative '../spec_helper'
-require_relative '../../app/helpers/move_validator'
 
 describe MoveValidator do
 	it "should return false for invalid move" do

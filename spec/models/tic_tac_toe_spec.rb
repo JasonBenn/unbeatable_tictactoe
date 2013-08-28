@@ -1,5 +1,4 @@
 require_relative '../spec_helper'
-require_relative '../../app/models/tic_tac_toe'
 
 describe TicTacToe do
   let(:ttt) { TicTacToe }
